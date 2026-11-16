@@ -759,9 +759,9 @@ document.querySelectorAll('[data-rail]').forEach(b=>b.addEventListener('click',(
 }));
 // tile mini canvas: loose frozen peas, each separate
 document.querySelectorAll('canvas[data-mini]').forEach(cv=>{
-  const draw=()=>{const {ctx,w,h}=fitCanvas(cv);ctx.clearRect(0,0,w,h);let i=0;
+  const draw=()=>{const {ctx,w,h}=fitCanvas(cv);ctx.clearRect(0,0,w,h);if(w<40||h<40)return;let i=0;
     for(let y=h*.36;y<h*.78;y+=30)for(let x=40+(Math.round(y)%60?15:0);x<w-30;x+=34){i++;drawPiece(ctx,'pea',x+Math.sin(i)*5,y+Math.cos(i*1.3)*5,11,i,0.75,i);} };
-  draw(); addEventListener('resize',draw);
+  let rz2; draw(); addEventListener('resize',()=>{clearTimeout(rz2);rz2=setTimeout(draw,150);});
 });
 if(!REDUCED){
   gsap.fromTo('.clock-arc',{attr:{'stroke-dashoffset':691}},{attr:{'stroke-dashoffset':518},duration:1.6,ease:'power2.out',scrollTrigger:{trigger:'#rail',start:'top 75%'}});
@@ -895,9 +895,9 @@ splitStatement(ST_EN);
 
 /* ===================== Packaging: bag scales up ===================== */
 const bagCv = document.getElementById('bagCanvas');
-const drawBag=()=>{const {ctx,w,h}=fitCanvas(bagCv);ctx.clearRect(0,0,w,h);let i=0;
+const drawBag=()=>{const {ctx,w,h}=fitCanvas(bagCv);ctx.clearRect(0,0,w,h);if(w<40||h<40)return;let i=0;
   for(let y=h*.25;y<h+10;y+=w/12)for(let x=0;x<w+10;x+=w/11){i++;drawPiece(ctx,'pea',x+Math.sin(i*1.7)*4,y+Math.cos(i)*3,w/22,i,.6,i);}};
-drawBag(); addEventListener('resize',drawBag);
+drawBag(); let bagRz; addEventListener('resize',()=>{clearTimeout(bagRz);bagRz=setTimeout(drawBag,150);});
 if(!REDUCED){
   gsap.timeline({scrollTrigger:{trigger:'#packScene',start:'top top',end:'bottom bottom',scrub:.5}})
     .fromTo('#bag',{scale:.5,y:'16vh',rotate:-6},{scale:1,y:'8vh',rotate:0,ease:'none'})
