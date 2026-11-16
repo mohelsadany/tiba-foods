@@ -305,6 +305,12 @@ footer nav{display:flex;flex-wrap:wrap;gap:20px}
   .temp{font-size:clamp(48px,min(15vw,9vh),64px)}
   .hero-copy{padding-bottom:clamp(80px,18vh,160px)}
 }
+/* phones and tablets: shorter scroll scenes so the page never feels stuck */
+@media (max-width:1000px), (hover:none){
+  .hero{height:210vh}
+  .reveal{height:160vh}
+  .pack-scene{height:160vh}
+}
 @media (min-width:701px) and (max-width:1000px){
   .macro-grid figure:nth-child(2){margin-top:40px}
   .wide-shot{aspect-ratio:16/10}
