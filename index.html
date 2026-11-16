@@ -115,8 +115,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .tabs button[aria-selected="true"]{background:var(--ink);color:var(--frost)}
 .explorer{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,5vw,72px);align-items:center}
 .stage-box{position:relative;aspect-ratio:1/1;border-radius:32px;background:radial-gradient(70% 70% at 50% 45%,#F7FBFC,#DCEBEF);overflow:hidden}
-#productCanvas{width:100%;height:100%}
-.stage-temp{position:absolute;inset-inline-end:20px;top:18px;font-size:13px;color:var(--ink-2);background:rgba(255,255,255,.7);padding:5px 12px;border-radius:999px}
+.stage-box .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .45s ease,transform .8s ease}
+.stage-box .pimg.on{opacity:1;transform:none}
+.stage-box:after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(12,43,48,.06);pointer-events:none}
+@media (prefers-reduced-motion:reduce){.stage-box .pimg{transition:none;transform:none}}
+.stage-temp{position:absolute;z-index:2;inset-inline-end:20px;top:18px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:13px;color:var(--ink);background:rgba(255,255,255,.82);padding:5px 12px;border-radius:999px}
 .plist{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 32px}
 .plist button{padding:7px 14px;border-radius:999px;border:1px solid var(--line);font-size:14px;display:flex;align-items:center;gap:8px}
 .plist button i{width:10px;height:10px;border-radius:50%;display:block}
@@ -447,7 +450,7 @@ footer .credits a{text-decoration:underline;text-underline-offset:2px}
     </div>
     <div class="explorer">
       <div class="stage-box">
-        <canvas id="productCanvas" aria-hidden="true"></canvas>
+        <img class="pimg on" alt="" decoding="async"><img class="pimg" alt="" decoding="async">
         <span class="stage-temp">Stored at −18°C</span>
       </div>
       <div>
@@ -622,7 +625,7 @@ footer .credits a{text-decoration:underline;text-underline-offset:2px}
     <span>© 2026 Tiba Foods. Cairo, Egypt.</span>
     <nav aria-label="Footer"><a href="#products">Products</a><a href="#process">Process</a><a href="#quality">Quality</a><a href="#packaging">Private label</a><a href="#contact">Contact</a></nav>
   </div>
-  <div class="wrap credits"><span class="credits-label">Photos:</span> <a href="https://www.flickr.com/photos/47188333@N00/12010444356" target="_blank" rel="noopener">Delta farms</a> by camilo g. r. (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/77961177@N00/384924971" target="_blank" rel="noopener">Frozen peas</a> by Frenkieb (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/68536138@N00/14899562043" target="_blank" rel="noopener">Frozen strawberries</a> by h2g2bob (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/77742560@N06/7637732356" target="_blank" rel="noopener">Okra</a> by shankar s. (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/41284017@N08/36860083153" target="_blank" rel="noopener">Sorting line, USDA</a> by USDAgov (<a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener">Public domain</a>); <a href="https://www.flickr.com/photos/44124390461@N01/3842826974" target="_blank" rel="noopener">Port of Barcelona</a> by David Davies (<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a>). Stock photos, not Tiba Foods' own.</div>
+  <div class="wrap credits"><span class="credits-label">Photos:</span> <a href="https://www.flickr.com/photos/47188333@N00/12010444356" target="_blank" rel="noopener">Delta farms</a> by camilo g. r. (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/77961177@N00/384924971" target="_blank" rel="noopener">Frozen peas</a> by Frenkieb (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/68536138@N00/14899562043" target="_blank" rel="noopener">Frozen strawberries</a> by h2g2bob (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/77742560@N06/7637732356" target="_blank" rel="noopener">Okra</a> by shankar s. (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/41284017@N08/36860083153" target="_blank" rel="noopener">Sorting line, USDA</a> by USDAgov (<a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener">Public domain</a>); <a href="https://www.flickr.com/photos/44124390461@N01/3842826974" target="_blank" rel="noopener">Port of Barcelona</a> by David Davies (<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a>); <a href="https://www.flickr.com/photos/28477990@N03/8042519481" target="_blank" rel="noopener">Green peas</a> by EEPaul (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://commons.wikimedia.org/w/index.php?curid=27749398" target="_blank" rel="noopener">Okra</a> by Aravind Sivaraj (<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>); <a href="https://commons.wikimedia.org/w/index.php?curid=25550590" target="_blank" rel="noopener">Green beans</a> by SummerTomato (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/194424926@N05/54590717714" target="_blank" rel="noopener">Sweet corn</a> by PattayaPatrol (<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a>); <a href="https://www.flickr.com/photos/79892177@N00/3733383293" target="_blank" rel="noopener">Carrots</a> by Steven Jackson Photography (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://commons.wikimedia.org/w/index.php?curid=65964" target="_blank" rel="noopener">Broccoli</a> by Quadell (<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>); <a href="https://commons.wikimedia.org/w/index.php?curid=102658592" target="_blank" rel="noopener">Artichoke</a> by Alabama Extension (<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en/" target="_blank" rel="noopener">Public domain</a>); <a href="https://www.flickr.com/photos/68536138@N00/14899562043" target="_blank" rel="noopener">Strawberries</a> by h2g2bob (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/155807330@N05/44594569595" target="_blank" rel="noopener">Mango</a> by ella.o (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/91252560@N00/1761756299" target="_blank" rel="noopener">Pomegranate</a> by theogeo (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://commons.wikimedia.org/w/index.php?curid=164352952" target="_blank" rel="noopener">Molokhia</a> by Abdeldjelil Souleyman (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>); <a href="https://www.flickr.com/photos/199114909@N03/54329844177" target="_blank" rel="noopener">Spinach</a> by luaevablue (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>); <a href="https://www.flickr.com/photos/134468672@N06/19675818713" target="_blank" rel="noopener">Peas and carrots</a> by terri_bateman (<a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">Public domain</a>); <a href="https://www.flickr.com/photos/64148767@N00/6693554459" target="_blank" rel="noopener">Fruit mix</a> by penelope waits (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>). Mixed vegetables is a collage of the peas, corn, carrot and bean photos. Stock photos, not Tiba Foods' own.</div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -815,33 +818,17 @@ const PRODUCTS_AR = {
   fruitmix:{name:'خليط فواكه',desc:'فراولة ومانجو ورمان للعصائر والحلويات.',specs:[['الخلطات','سموذي، استوائي، حسب الطلب'],['الاستخدام','التجزئة، محلات العصير، منتجات الألبان'],['العبوات','من 400 جم إلى 10 كجم']]},
 };
 const swatch = k => KINDS[k]?.c[1] || '#4E8F3A';
-const pCv = document.getElementById('productCanvas');
-let P = fitCanvas(pCv), pile = [], pileT = 0, current;
+// product photo: crossfade between two stacked images
+const pImgs=[...document.querySelectorAll('.stage-box .pimg')]; let pFront=0, current;
 function buildPile(prod){
-  const kinds = prod.mix || [prod.kind];
-  const big = ['okra','bean','leaf'].includes(kinds[0]) ? 1.2 : 1;
-  const n = prod.mix ? 46 : 38;
-  pile = Array.from({length:n},(_,i)=>{
-    const a = i*2.399, r = Math.sqrt(i/n)*Math.min(P.w,P.h)*.36;
-    return {kind:kinds[i%kinds.length], x:P.w/2+Math.cos(a)*r, y:P.h/2+Math.sin(a)*r*.9, s:(P.w/30)*big*rand(.85,1.1), r:rand(0,6.28), seed:i+3, ph:rand(0,6.28)};
-  }).sort((a,b)=>a.y-b.y);
-  pileT = 0;
+  const src='images/products/'+prod.id+'.jpg', alt=tx(prod).name;
+  const cur=pImgs[pFront];
+  if(cur.getAttribute('src')===src){cur.alt=alt;return;}
+  const nxt=pImgs[1-pFront];
+  nxt.onload=()=>{nxt.classList.add('on');cur.classList.remove('on');pFront=1-pFront;};
+  nxt.alt=alt; nxt.src=src; if(nxt.complete&&nxt.naturalWidth) nxt.onload();
 }
-function drawPile(now){
-  const {ctx,w,h} = P; ctx.clearRect(0,0,w,h);
-  pileT = Math.min(1, pileT + .035);
-  const e = 1 - Math.pow(1-pileT,3);
-  for(const q of pile){
-    const bob = REDUCED ? 0 : Math.sin(now/1400+q.ph)*2.5;
-    const y = q.y - (1-e)*h*.5 + bob;
-    ctx.globalAlpha = e;
-    drawPiece(ctx,q.kind,q.x,y,q.s,q.r+(1-e)*2,.55,q.seed);
-  }
-  ctx.globalAlpha=1;
-  if(pileVisible) requestAnimationFrame(drawPile); else pileRunning=false;
-}
-let pileVisible=false, pileRunning=false;
-new IntersectionObserver(([e])=>{pileVisible=e.isIntersecting; if(pileVisible&&!pileRunning){pileRunning=true;requestAnimationFrame(drawPile);}}).observe(pCv);
+addEventListener('load',()=>Object.values(PRODUCTS).flat().forEach(pr=>{const i=new Image();i.src='images/products/'+pr.id+'.jpg';}));
 const plist = document.getElementById('plist');
 let curCat='veg';
 const tx = pr => (isAR() && PRODUCTS_AR[pr.id]) ? PRODUCTS_AR[pr.id] : pr;
@@ -1049,7 +1036,7 @@ if(!initLang){ try{ initLang = localStorage.getItem('tiba-lang'); }catch(e){} }
 if(initLang==='ar') applyLang('ar');
 
 /* ===================== Resize ===================== */
-let rz; addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{H=fitCanvas(heroCv);seedHero();P=fitCanvas(pCv);if(current)buildPile(current);ScrollTrigger.refresh();},150);});
+let rz; addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{H=fitCanvas(heroCv);seedHero();ScrollTrigger.refresh();},150);});
 })();
 </script>
 </body>
