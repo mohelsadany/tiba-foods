@@ -1,0 +1,1046 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tiba Foods — IQF Frozen Vegetables & Fruits from Egypt</title>
+<meta name="description" content="Tiba Foods grows, freezes and exports IQF vegetables, fruits and leafy greens from Egypt. Every piece frozen on its own at -40°C, hours after harvest.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Hanken+Grotesk:wght@400;500;600&family=Alexandria:wght@300..700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --frost:#F2F7F8;
+  --frost-2:#E4EEF0;
+  --ink:#0C2B30;
+  --ink-2:#3C5A5E;
+  --ink-3:#6E8689;
+  --pea:#4E8F3A;
+  --pea-deep:#2F5E22;
+  --ice:#CFE9F1;
+  --ice-deep:#8EC5D6;
+  --sun:#E9A93B;
+  --berry:#C9344A;
+  --line:rgba(12,43,48,.12);
+  --display:"Bricolage Grotesque", system-ui, sans-serif;
+  --body:"Hanken Grotesk", system-ui, sans-serif;
+  --gut:clamp(16px,4vw,48px);
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--frost);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg,canvas{display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--pea);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+
+/* ---------- type ---------- */
+.d1,.d2,.d3{font-family:var(--display);font-weight:650;letter-spacing:-.025em;line-height:1.02;font-variation-settings:"opsz" 96}
+.d1{font-size:clamp(44px,8.4vw,112px)}
+.d2{font-size:clamp(36px,5.6vw,76px)}
+.d3{font-size:clamp(26px,3.2vw,40px);line-height:1.1}
+.lede{font-size:clamp(18px,1.6vw,22px);color:var(--ink-2);max-width:34em;line-height:1.5}
+.small{font-size:14px;color:var(--ink-3)}
+
+/* ---------- demo ribbon + nav ---------- */
+.rib-short{display:none}
+@media (max-width:700px){.rib-long{display:none}.rib-short{display:inline}}
+.ribbon{position:sticky;top:0;z-index:51;background:var(--ink);color:var(--ice);font-size:13px;text-align:center;padding:8px var(--gut)}
+.nav{position:sticky;top:var(--rib,36px);z-index:50;background:rgba(242,247,248,.72);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:56px}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em}
+.brand span{font-weight:400;color:var(--ink-3)}
+.nav ul{display:flex;gap:24px;list-style:none;margin-inline-start:auto;font-size:14px}
+.nav ul a{text-decoration:none;color:var(--ink-2)}
+.nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:10px 20px;font-size:15px;font-weight:600;text-decoration:none;transition:background .2s}
+.btn-ink{background:var(--ink);color:var(--frost)}
+.btn-ink:hover{background:#163f45}
+.btn-line{border:1px solid var(--ink);color:var(--ink)}
+.btn-line:hover{background:rgba(12,43,48,.06)}
+.nav .btn{padding:7px 15px;font-size:13px}
+@media (max-width:860px){.nav ul{display:none}.lang{margin-inline-start:auto}}
+
+/* ---------- hero: the freeze ---------- */
+.hero{position:relative;height:360vh}
+.hero-stage{position:sticky;top:var(--hdr,92px);height:calc(100vh - var(--hdr,92px));overflow:hidden;background:#EAF0D9}
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(60% 55% at 78% 8%, rgba(246,205,120,.75), transparent 70%),
+  linear-gradient(180deg,#EEF2DA 0%,#E2ECD0 100%)}
+.hero-ice{position:absolute;inset:0;opacity:0;background:
+  radial-gradient(70% 60% at 50% 0%, #FFFFFF, transparent 70%),
+  linear-gradient(180deg,#E6F4F8 0%,#CFE7EF 100%)}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-copy{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:0 var(--gut);pointer-events:none}
+.hero-copy > div{grid-area:1/1}
+.hero-line{opacity:0}
+.hero-line.is-first{opacity:1}
+.hero-line .d1{max-width:11ch;margin:0 auto}
+.hero-line p{margin:22px auto 0;max-width:30em}
+.temp{position:absolute;inset-inline-start:var(--gut);bottom:clamp(20px,5vh,48px);font-family:var(--display);font-weight:300;font-size:clamp(56px,9vw,128px);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.temp small{display:block;font-family:var(--body);font-size:14px;font-weight:500;letter-spacing:0;color:var(--ink-2);margin-bottom:6px}
+.scroll-hint{position:absolute;inset-inline-end:var(--gut);bottom:clamp(24px,5vh,52px);font-size:13px;color:var(--ink-2);display:flex;align-items:center;gap:10px}
+.scroll-hint i{width:1px;height:40px;background:var(--ink-2);display:block;transform-origin:top;animation:hint 1.8s ease-in-out infinite}
+@keyframes hint{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- sections ---------- */
+.sec{padding:clamp(96px,14vh,160px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+
+/* highlights carousel */
+.rail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gut) 24px;scrollbar-width:none;scroll-padding:0 var(--gut)}
+.rail::-webkit-scrollbar{display:none}
+.rail-pad{flex:0 0 max(0px,calc((100vw - var(--max))/2 - 20px))}
+.tile{flex:0 0 min(78vw,400px);height:min(118vw,580px);border-radius:28px;scroll-snap-align:start;position:relative;overflow:hidden;padding:32px;display:flex;flex-direction:column}
+.tile h3{font-family:var(--display);font-weight:600;font-size:clamp(24px,2.4vw,30px);line-height:1.12;letter-spacing:-.02em;max-width:13ch;position:relative;z-index:2}
+.tile p{margin-top:auto;font-size:15px;max-width:26em;position:relative;z-index:2}
+.tile .art{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.t-ink{background:var(--ink);color:var(--frost)}
+.t-ink p{color:#A9C3C6}
+.t-ice{background:var(--ice);color:var(--ink)}
+.t-pea{background:var(--pea);color:#F3F8EE}
+.t-pea p{color:#DCEBD2}
+.t-white{background:#fff;color:var(--ink)}
+.t-sun{background:#F3D9A4;color:var(--ink)}
+.rail-ctrl{display:flex;gap:10px}
+.rail-ctrl button{width:44px;height:44px;border-radius:50%;background:var(--frost-2);display:grid;place-items:center}
+.rail-ctrl button:hover{background:var(--ice)}
+
+/* product explorer */
+.explore{background:#fff}
+.tabs{display:flex;gap:6px;background:var(--frost);border-radius:999px;padding:5px;width:max-content;max-width:100%;overflow-x:auto;margin:0 auto 40px}
+.tabs button{padding:9px 18px;border-radius:999px;font-size:15px;color:var(--ink-2);white-space:nowrap}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--frost)}
+.explorer{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,5vw,72px);align-items:center}
+.stage-box{position:relative;aspect-ratio:1/1;border-radius:32px;background:radial-gradient(70% 70% at 50% 45%,#F7FBFC,#DCEBEF);overflow:hidden}
+#productCanvas{width:100%;height:100%}
+.stage-temp{position:absolute;inset-inline-end:20px;top:18px;font-size:13px;color:var(--ink-2);background:rgba(255,255,255,.7);padding:5px 12px;border-radius:999px}
+.plist{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 32px}
+.plist button{padding:7px 14px;border-radius:999px;border:1px solid var(--line);font-size:14px;display:flex;align-items:center;gap:8px}
+.plist button i{width:10px;height:10px;border-radius:50%;display:block}
+.plist button[aria-pressed="true"]{border-color:var(--ink);background:var(--frost)}
+.pname{font-family:var(--display);font-weight:600;font-size:clamp(32px,3.6vw,48px);letter-spacing:-.025em;line-height:1.05}
+.pdesc{color:var(--ink-2);margin:12px 0 24px;max-width:30em}
+.specs{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;font-size:15px;border-top:1px solid var(--line);padding-top:20px}
+.specs dt{color:var(--ink-3)}
+@media (max-width:860px){.explorer{grid-template-columns:1fr}.tabs{margin-left:0}}
+
+/* process */
+.process{background:var(--ink);color:var(--frost)}
+.process .lede{color:#A9C3C6}
+.proc-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,6vw,96px);margin-top:72px}
+.proc-sticky{position:sticky;top:calc(var(--hdr,92px) + 40px);height:calc(100vh - 140px);min-height:460px;display:flex;align-items:center;gap:32px}
+.thermo{width:14px;height:78%;border-radius:999px;background:rgba(207,233,241,.12);position:relative;flex:none}
+.thermo b{position:absolute;left:0;right:0;bottom:0;border-radius:999px;background:linear-gradient(0deg,#8EC5D6,#E9A93B);height:60%}
+.thermo-scale{position:absolute;inset-inline-start:24px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:space-between;font-size:12px;color:#7FA0A4}
+.proc-read{margin-inline-start:44px}
+.proc-temp{font-family:var(--display);font-weight:300;font-size:clamp(72px,10vw,150px);letter-spacing:-.05em;line-height:.9;font-variant-numeric:tabular-nums}
+.proc-stage{margin-top:16px;font-size:18px;color:var(--ice)}
+.proc-clock{margin-top:6px;font-size:14px;color:#7FA0A4}
+.steps{list-style:none}
+.step{min-height:62vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .4s}
+.step.on{opacity:1}
+.step .n{font-family:var(--display);font-size:15px;color:var(--sun);margin-bottom:12px;font-variant-numeric:tabular-nums}
+.step h3{font-family:var(--display);font-weight:600;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;line-height:1.08;margin-bottom:14px}
+.step p{color:#B9CFD2;max-width:28em}
+@media (max-width:860px){
+  .proc-grid{grid-template-columns:1fr}
+  .proc-grid > div:first-child{display:contents}
+  .proc-sticky{top:var(--hdr,92px);height:auto;min-height:0;padding:18px 0;background:var(--ink);z-index:2}
+  .thermo{height:120px}
+  .thermo-scale{display:none}
+  .proc-read{margin-inline-start:0}
+  .proc-temp{font-size:64px}
+  .step{min-height:56vh}
+}
+
+/* statement */
+.statement{padding:clamp(120px,22vh,240px) 0}
+.statement p{font-family:var(--display);font-weight:600;font-size:clamp(34px,5.2vw,72px);letter-spacing:-.025em;line-height:1.08;max-width:17ch}
+.statement .w{opacity:.14}
+
+/* packaging */
+.pack-scene{height:220vh;position:relative}
+.pack-sticky{position:sticky;top:var(--hdr,92px);height:calc(100vh - var(--hdr,92px));display:grid;place-items:center;overflow:hidden}
+.pack-intro{position:absolute;top:clamp(24px,7vh,80px);left:0;right:0;text-align:center;padding:0 var(--gut)}
+.bag{width:min(360px,62vw);aspect-ratio:3/4.1;position:relative;transform:scale(.55);will-change:transform}
+.bag-body{position:absolute;inset:0;border-radius:18px 18px 24px 24px;background:linear-gradient(100deg,#2C6B2A 0%,#4E8F3A 38%,#5FA247 52%,#3D7A2E 100%);box-shadow:0 40px 80px -30px rgba(12,43,48,.45);overflow:hidden}
+.bag-body:before{content:"";position:absolute;left:0;right:0;top:0;height:9%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 2px,transparent 2px 7px);border-bottom:1px solid rgba(255,255,255,.25)}
+.bag-body:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0,rgba(255,255,255,.22) 45%,transparent 60%)}
+.bag-label{position:absolute;left:9%;right:9%;top:16%;color:#F3F8EE}
+.bag-label .bl1{font-family:var(--display);font-weight:700;font-size:clamp(20px,3.6vw,34px);letter-spacing:-.02em}
+.bag-label .bl2{font-family:var(--display);font-weight:600;font-size:clamp(28px,5.4vw,52px);line-height:.95;margin-top:10%;letter-spacing:-.03em}
+.bag-label .bl3{font-size:clamp(10px,1.2vw,13px);margin-top:6px;opacity:.85}
+.bag-window{position:absolute;left:14%;right:14%;bottom:8%;height:29%;border-radius:50% 50% 16px 16px/30% 30% 16px 16px;background:rgba(220,240,246,.25);border:1px solid rgba(255,255,255,.35);overflow:hidden}
+#bagCanvas{width:100%;height:100%}
+.bag-weight{position:absolute;inset-inline-end:9%;top:16%;font-size:clamp(11px,1.3vw,14px);color:#F3F8EE;font-weight:600}
+.pack-opts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.pack-opts > div{padding:28px 0 8px;padding-inline-end:24px}
+.pack-opts h3{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.01em;margin-bottom:6px}
+.pack-opts .size{font-family:var(--display);font-size:clamp(28px,3vw,36px);font-weight:300;letter-spacing:-.03em;margin-bottom:10px}
+.pack-opts p{color:var(--ink-2);font-size:15px}
+@media (max-width:860px){.pack-opts{grid-template-columns:1fr 1fr}}
+
+/* quality */
+.quality{background:var(--frost-2)}
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 48px;margin-top:56px}
+.cert{display:grid;grid-template-columns:72px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.seal{width:64px;height:64px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:12px;text-align:center;line-height:1.05;letter-spacing:-.01em}
+.cert h3{font-size:17px;font-weight:600}
+.cert p{font-size:15px;color:var(--ink-2)}
+
+/* reach */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px}
+.stat .v{font-family:var(--display);font-weight:300;font-size:clamp(48px,6vw,84px);letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
+.stat p{color:var(--ink-2);margin-top:10px;font-size:15px;max-width:16em}
+.regions{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:72px;border-top:1px solid var(--line);padding-top:28px}
+.regions h3{font-size:17px;font-weight:600;margin-bottom:6px}
+.regions p{font-size:15px;color:var(--ink-2)}
+@media (max-width:860px){.stats,.regions{grid-template-columns:1fr 1fr}}
+
+/* faq */
+.faq{max-width:860px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:24px 0;padding-inline-end:40px;font-family:var(--display);font-weight:600;font-size:clamp(20px,2vw,24px);letter-spacing:-.015em;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"";position:absolute;inset-inline-end:6px;top:50%;width:14px;height:14px;margin-top:-10px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .3s}
+.faq details[open] summary:after{transform:rotate(225deg);margin-top:-2px}
+.faq details p{padding:0 0 26px;color:var(--ink-2);max-width:40em}
+.faq-tools{display:flex;gap:16px;margin-bottom:20px;font-size:14px}
+.faq-tools button{color:var(--pea-deep);text-decoration:underline;text-underline-offset:3px}
+
+/* contact */
+.contact{background:var(--ink);color:var(--frost)}
+.contact .lede{color:#A9C3C6}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;max-width:860px}
+.form label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:#A9C3C6}
+.form .full{grid-column:1/-1}
+.form input,.form select,.form textarea{font:inherit;font-size:16px;color:var(--frost);background:rgba(207,233,241,.07);border:1px solid rgba(207,233,241,.2);border-radius:12px;padding:13px 14px}
+.form input:focus,.form select:focus,.form textarea:focus{outline:2px solid var(--ice-deep);outline-offset:1px}
+.form select option{color:var(--ink)}
+.form .btn{justify-self:start;background:var(--ice);color:var(--ink);padding:13px 26px}
+.form-note{grid-column:1/-1;font-size:14px;color:var(--ice);min-height:1.5em}
+@media (max-width:700px){.form{grid-template-columns:1fr}}
+footer{background:var(--ink);color:#7FA0A4;font-size:14px;border-top:1px solid rgba(207,233,241,.12)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;padding-top:32px;padding-bottom:40px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--frost)}
+footer nav{display:flex;flex-wrap:wrap;gap:20px}
+
+/* photos */
+.reveal{height:220vh;position:relative}
+.reveal-sticky{position:sticky;top:var(--hdr,92px);height:calc(100vh - var(--hdr,92px));overflow:hidden;display:grid;place-items:center}
+.reveal-img{position:absolute;inset:0;clip-path:inset(12% 16% round 32px);will-change:clip-path}
+.reveal-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);will-change:transform}
+.reveal-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,43,48,.3) 0%,rgba(12,43,48,.38) 45%,rgba(12,43,48,.66));opacity:0}
+.reveal-copy{position:relative;z-index:2;color:#fff;text-align:center;padding:0 var(--gut);opacity:0;max-width:900px}
+.reveal-copy p{color:rgba(255,255,255,.88);margin:18px auto 0}
+.macro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px);margin-top:56px;align-items:start}
+.macro-grid figure:nth-child(2){margin-top:72px}
+.macro-grid img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px;background:var(--frost-2)}
+.macro-grid figcaption{margin-top:12px;font-size:15px;color:var(--ink-2)}
+.wide-shot{margin-top:56px;border-radius:28px;overflow:hidden;aspect-ratio:16/8;background:var(--frost-2)}
+.wide-shot img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);will-change:transform}
+.process .wide-shot{background:#163f45}
+@media (max-width:700px){
+  .macro-grid{grid-template-columns:repeat(3,76vw);overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut);scrollbar-width:none}
+  .macro-grid::-webkit-scrollbar{display:none}
+  .macro-grid figure{scroll-snap-align:center}
+  .macro-grid figure:nth-child(2){margin-top:0}
+  .wide-shot{aspect-ratio:4/3;border-radius:20px}
+  .reveal-img{clip-path:inset(10% 6% round 24px)}
+}
+
+/* language + RTL */
+.lang{font-size:14px;font-weight:600;padding:6px 13px;border-radius:999px;border:1px solid var(--line);color:var(--ink);font-family:"IBM Plex Sans Arabic",var(--body)}
+.lang:hover{background:var(--frost-2)}
+.temp .num{display:inline-block;direction:ltr;unicode-bidi:isolate}
+.proc-temp{direction:ltr;unicode-bidi:isolate}
+[dir=rtl]{--display:"Alexandria",system-ui,sans-serif;--body:"IBM Plex Sans Arabic",system-ui,sans-serif}
+[dir=rtl] body{line-height:1.75}
+[dir=rtl] *{letter-spacing:0!important}
+[dir=rtl] .d1,[dir=rtl] .d2{line-height:1.25;font-weight:700}
+[dir=rtl] .d1{font-size:clamp(40px,7.2vw,96px)}
+[dir=rtl] .hero-line .d1{max-width:13ch}
+[dir=rtl] .tile h3,[dir=rtl] .step h3,[dir=rtl] .pname,[dir=rtl] .faq summary{line-height:1.4}
+[dir=rtl] .statement p{line-height:1.45;max-width:20ch}
+[dir=rtl] .proc-temp{text-align:right}
+[dir=rtl] .rail-ctrl svg{transform:scaleX(-1)}
+[dir=rtl] .bag-label .bl2{line-height:1.2}
+[dir=rtl] .lede{line-height:1.8}
+[dir=rtl] .temp .num,[dir=rtl] .proc-temp,[dir=rtl] .stat .v{font-family:"Bricolage Grotesque","Alexandria",sans-serif}
+[dir=rtl] .stat .v{font-size:clamp(40px,5vw,72px);white-space:nowrap;line-height:1.2}
+.btn{white-space:nowrap}
+@media (max-width:860px){.nav .wrap{gap:12px}}
+
+/* fit to screen height as well as width (short laptops, side panels, landscape phones) */
+.hero-copy{padding-bottom:clamp(90px,24vh,220px)}
+.hero-line .d1{font-size:clamp(36px,min(8.4vw,11vh),112px)}
+[dir=rtl] .hero-line .d1{font-size:clamp(32px,min(7.2vw,9.5vh),96px)}
+.hero-line p{font-size:clamp(15px,min(1.6vw,2.6vh),22px)}
+.temp{font-size:clamp(44px,min(9vw,13vh),128px)}
+.tile{height:clamp(360px,calc(100vh - var(--hdr,92px) - 150px),580px)}
+.bag{width:min(360px,62vw,44vh)}
+@media (min-width:861px){
+  .proc-sticky{height:calc(100vh - var(--hdr,92px) - 80px);min-height:340px}
+  .proc-temp{font-size:clamp(56px,min(10vw,15vh),150px)}
+  .step{min-height:max(62vh,320px)}
+}
+@media (max-height:620px){
+  .ribbon{position:relative;font-size:12px;padding-block:5px}
+  .nav{top:0}
+  .hero-line p{margin-top:12px}
+  .temp small{font-size:12px;margin-bottom:2px}
+  .scroll-hint{display:none}
+  .pack-intro .d2{font-size:clamp(28px,min(5.6vw,8vh),76px)}
+}
+@media (max-width:700px){
+  .tile{height:clamp(380px,calc(100vh - var(--hdr,92px) - 170px),540px)}
+  .hero-line .d1{font-size:clamp(40px,min(11.5vw,7vh),56px)}
+  [dir=rtl] .hero-line .d1{font-size:clamp(34px,min(10vw,6.4vh),50px)}
+  .hero-line p{font-size:16px}
+  .temp{font-size:clamp(48px,min(15vw,9vh),64px)}
+  .hero-copy{padding-bottom:clamp(80px,18vh,160px)}
+}
+@media (min-width:701px) and (max-width:1000px){
+  .macro-grid figure:nth-child(2){margin-top:40px}
+  .wide-shot{aspect-ratio:16/10}
+  .stats{grid-template-columns:1fr 1fr}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .scroll-hint i{animation:none}
+  .step{opacity:1}
+  .statement .w{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<div class="ribbon">Concept preview for Tiba Foods.<span class="rib-long"> Products, figures and certifications are placeholders, and photos are AI-generated.</span><span class="rib-short"> Content and photos are placeholders.</span></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Tiba Foods home">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M13 1.5l10 5.75v11.5L13 24.5 3 18.75V7.25z" fill="none" stroke="#0C2B30" stroke-width="1.8"/><path d="M13 19c0-5 2.5-8.5 6-10-1 4.5-3 8-6 10zM13 19c0-3.5-1.8-6-4.5-7 .6 3.2 2.2 5.6 4.5 7z" fill="#4E8F3A"/></svg>
+      Tiba <span>Foods</span>
+    </a>
+    <ul>
+      <li><a href="#highlights">Why Tiba</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#packaging">Private label</a></li>
+      <li><a href="#quality">Quality</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <button type="button" class="lang" id="langBtn" lang="ar">عربي</button>
+    <a class="btn btn-ink" href="#contact">Request a quote</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO: scroll to freeze -->
+<section class="hero" id="hero" aria-label="From the field to -40°C">
+  <div class="hero-stage">
+    <div class="hero-bg"></div>
+    <div class="hero-ice"></div>
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero-copy">
+      <div class="hero-line is-first" data-line="0">
+        <h1 class="d1">Picked in the Egyptian sun.</h1>
+        <p class="lede">Peas, beans, okra, strawberries and mango, grown along the Nile and harvested at their best.</p>
+      </div>
+      <div class="hero-line" data-line="1">
+        <h2 class="d1">Frozen within hours.</h2>
+        <p class="lede">Straight from the field into −40°C air, before the flavour has time to fade.</p>
+      </div>
+      <div class="hero-line" data-line="2">
+        <h2 class="d1">Every piece on its own.</h2>
+        <p class="lede">Individually quick frozen. Nothing clumps, so you pour exactly what you need and keep the rest frozen.</p>
+      </div>
+    </div>
+    <div class="temp"><small>Product temperature</small><span class="num"><span id="tempVal">24</span><span class="unit">°C</span></span></div>
+    <div class="scroll-hint" aria-hidden="true">Scroll to freeze <i></i></div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="sec" id="highlights">
+  <div class="wrap sec-head">
+    <h2 class="d2">Why buyers choose Tiba.</h2>
+    <div class="rail-ctrl">
+      <button type="button" aria-label="Previous" data-rail="-1"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <button type="button" aria-label="Next" data-rail="1"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+    </div>
+  </div>
+  <div class="rail" id="rail" tabindex="0" aria-label="Highlights">
+    <div class="rail-pad"></div>
+    <article class="tile t-ink">
+      <h3>From field to freezer in under four hours.</h3>
+      <svg class="art" viewBox="0 0 400 580" aria-hidden="true"><circle cx="200" cy="320" r="110" fill="none" stroke="rgba(207,233,241,.15)" stroke-width="18"/><circle cx="200" cy="320" r="110" fill="none" stroke="#E9A93B" stroke-width="18" stroke-linecap="round" stroke-dasharray="691" stroke-dashoffset="518" transform="rotate(-90 200 320)" class="clock-arc"/><text x="200" y="336" text-anchor="middle" fill="#F2F7F8" font-family="Bricolage Grotesque" font-weight="300" font-size="54">&lt;4h</text></svg>
+      <p>Our farms sit close to the plant, so produce is cooled, cleaned and frozen the same morning it is picked.</p>
+    </article>
+    <article class="tile t-ice">
+      <h3>Every piece frozen on its own.</h3>
+      <canvas class="art" data-mini="pea" aria-hidden="true"></canvas>
+      <p>Cold air keeps each pea, bean and berry moving while it freezes, so it never sticks to the next one.</p>
+    </article>
+    <article class="tile t-white">
+      <h3>−40°C spiral tunnels.</h3>
+      <svg class="art" viewBox="0 0 400 580" aria-hidden="true"><g fill="none" stroke="#8EC5D6" stroke-width="2"><ellipse cx="200" cy="230" rx="130" ry="30"/><ellipse cx="200" cy="280" rx="130" ry="30"/><ellipse cx="200" cy="330" rx="130" ry="30"/><ellipse cx="200" cy="380" rx="130" ry="30"/><ellipse cx="200" cy="430" rx="130" ry="30" stroke="#0C2B30"/></g><path d="M70 230v200M330 230v200" stroke="#CFE9F1" stroke-width="2"/></svg>
+      <p>Fast freezing makes small ice crystals. Cell walls stay intact, so texture and colour survive thawing.</p>
+    </article>
+    <article class="tile t-pea">
+      <h3>Checked by metal detector and X-ray.</h3>
+      <svg class="art" viewBox="0 0 400 580" aria-hidden="true"><rect x="60" y="250" width="280" height="150" rx="16" fill="none" stroke="rgba(243,248,238,.4)" stroke-width="2"/><g fill="rgba(243,248,238,.7)"><circle cx="110" cy="330" r="10"/><circle cx="150" cy="315" r="10"/><circle cx="190" cy="340" r="10"/><circle cx="235" cy="320" r="10"/><circle cx="275" cy="335" r="10"/><circle cx="300" cy="312" r="10"/></g><rect class="scan" x="60" y="250" width="4" height="150" fill="#E9A93B"/></svg>
+      <p>Every line runs through foreign-body detection after freezing and again after packing.</p>
+    </article>
+    <article class="tile t-sun">
+      <h3>Your label on our harvest.</h3>
+      <svg class="art" viewBox="0 0 400 580" aria-hidden="true"><g transform="translate(130 210)"><rect width="140" height="190" rx="10" fill="#0C2B30"/><rect x="18" y="40" width="70" height="10" rx="3" fill="#F3D9A4"/><rect x="18" y="60" width="104" height="22" rx="4" fill="#F2F7F8"/><ellipse cx="70" cy="145" rx="46" ry="28" fill="rgba(207,233,241,.25)"/></g></svg>
+      <p>Private label in retail, food service and industrial sizes, printed to your artwork and language.</p>
+    </article>
+    <article class="tile t-ink">
+      <h3>Shipped frozen to buyers on four continents.</h3>
+      <svg class="art" viewBox="0 0 400 580" aria-hidden="true"><g transform="translate(70 270)"><rect width="260" height="110" rx="6" fill="none" stroke="#8EC5D6" stroke-width="2"/><g stroke="rgba(142,197,214,.45)" stroke-width="2"><path d="M26 12v86M52 12v86M78 12v86M104 12v86M130 12v86M156 12v86M182 12v86M208 12v86M234 12v86"/></g></g><text x="200" y="430" text-anchor="middle" fill="#7FA0A4" font-family="Hanken Grotesk" font-size="15">40 ft reefer at −18°C</text></svg>
+      <p>Full and mixed container loads, with temperature logs from our cold store to your port.</p>
+    </article>
+    <div class="rail-pad"></div>
+  </div>
+</section>
+
+<!-- FIELD REVEAL -->
+<section class="reveal" id="farms" aria-label="Our farms">
+  <div class="reveal-sticky">
+    <div class="reveal-img"><img src="images/field.jpg" alt="Pea field in the Nile Delta at sunrise, with palm trees on the horizon"><div class="reveal-shade"></div></div>
+    <div class="reveal-copy">
+      <h2 class="d1">It all starts in the Delta.</h2>
+      <p class="lede">Our contract farms grow peas, beans, okra and strawberries in Nile soil, a short drive from the freezer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT EXPLORER -->
+<section class="sec explore" id="products">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:40px">
+      <h2 class="d2">Take a closer look.</h2>
+      <p class="lede" style="margin:18px auto 0">Choose a crop to see its cuts and sizes. The full range is in our catalogue.</p>
+    </div>
+    <div class="tabs" role="tablist" id="tabs">
+      <button role="tab" aria-selected="true" data-cat="veg">Vegetables</button>
+      <button role="tab" aria-selected="false" data-cat="fruit">Fruits</button>
+      <button role="tab" aria-selected="false" data-cat="leaf">Leafy greens</button>
+      <button role="tab" aria-selected="false" data-cat="mix">Mixes</button>
+    </div>
+    <div class="explorer">
+      <div class="stage-box">
+        <canvas id="productCanvas" aria-hidden="true"></canvas>
+        <span class="stage-temp">Stored at −18°C</span>
+      </div>
+      <div>
+        <div class="plist" id="plist"></div>
+        <h3 class="pname" id="pname"></h3>
+        <p class="pdesc" id="pdesc"></p>
+        <dl class="specs" id="pspecs"></dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MACRO GALLERY -->
+<section class="sec" id="frozen">
+  <div class="wrap">
+    <h2 class="d2" style="max-width:12ch">Frozen, not changed.</h2>
+    <p class="lede" style="margin-top:20px">Colour, shape and bite stay the way they left the field.</p>
+    <div class="macro-grid">
+      <figure><img src="images/peas.jpg" alt="Loose frozen green peas with a light frost" loading="lazy"><figcaption>Green peas, extra fine</figcaption></figure>
+      <figure><img src="images/strawberries.jpg" alt="Whole frozen strawberries covered in frost" loading="lazy"><figcaption>Strawberries, whole</figcaption></figure>
+      <figure><img src="images/okra.jpg" alt="Small frozen okra pods, each one separate" loading="lazy"><figcaption>Okra, zero grade</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec process" id="process">
+  <div class="wrap">
+    <h2 class="d2" style="max-width:14ch">How a pea gets from our field to your freezer.</h2>
+    <p class="lede" style="margin-top:20px">Eight steps, one temperature line. Scroll through and watch it fall.</p>
+    <figure class="wide-shot"><img src="images/factory.jpg" alt="Green peas on a stainless steel line entering an IQF tunnel freezer" loading="lazy"></figure>
+    <div class="proc-grid">
+      <div>
+        <div class="proc-sticky">
+          <div class="thermo"><b id="thermoFill"></b>
+            <div class="thermo-scale"><span>100°</span><span>50°</span><span>0°</span><span>−40°</span></div>
+          </div>
+          <div class="proc-read">
+            <div class="proc-temp"><span id="procTemp">28</span><span class="unit">°C</span></div>
+            <div class="proc-stage" id="procStage">In the field</div>
+            <div class="proc-clock" id="procClock">Hour 0</div>
+          </div>
+        </div>
+      </div>
+      <ol class="steps" id="steps">
+        <li class="step" data-t="28" data-s="In the field" data-c="Hour 0" data-s-ar="في الحقل" data-c-ar="الساعة 0"><div class="n">Step 1</div><h3>Harvested at peak ripeness.</h3><p>Contract farms grow to our seed and spray plans. Agronomists pick the harvest day by sugar and tenderness, not the calendar.</p></li>
+        <li class="step" data-t="6" data-s="Receiving and pre-cooling" data-c="Hour 1" data-s-ar="الاستلام والتبريد المبدئي" data-c-ar="الساعة 1"><div class="n">Step 2</div><h3>Cooled the moment it arrives.</h3><p>Every truck is sampled and logged with its farm and plot, so each bag can be traced back to the field.</p></li>
+        <li class="step" data-t="12" data-s="Sorting and washing" data-c="Hour 1.5" data-s-ar="الفرز والغسيل" data-c-ar="الساعة 1.5"><div class="n">Step 3</div><h3>Sorted, graded and washed.</h3><p>Optical sorters remove stones, stems and off-colour pieces. Produce is graded by size and washed in chilled water.</p></li>
+        <li class="step" data-t="92" data-s="Blanching" data-c="Hour 2" data-s-ar="السلق" data-c-ar="الساعة 2"><div class="n">Step 4</div><h3>Blanched to lock in colour.</h3><p>A short dip in hot water stops the enzymes that dull colour and flavour. Fruits skip this step.</p></li>
+        <li class="step" data-t="4" data-s="Cooling" data-c="Hour 2" data-s-ar="التبريد" data-c-ar="الساعة 2"><div class="n">Step 5</div><h3>Chilled straight after.</h3><p>Ice-water flumes bring the temperature down in seconds, so the vegetables stop cooking.</p></li>
+        <li class="step" data-t="-40" data-s="IQF tunnel" data-c="Hour 2.5" data-s-ar="نفق التجميد IQF" data-c-ar="الساعة 2.5"><div class="n">Step 6</div><h3>Frozen piece by piece at −40°C.</h3><p>A fluidised bed of cold air lifts each piece as it freezes. Minutes later it is frozen to the core and free-flowing.</p></li>
+        <li class="step" data-t="-18" data-s="Inspection and packing" data-c="Hour 3" data-s-ar="الفحص والتعبئة" data-c-ar="الساعة 3"><div class="n">Step 7</div><h3>Inspected and packed.</h3><p>Metal detection, X-ray and lab checks on every lot, then packed into retail bags, food-service packs or cartons.</p></li>
+        <li class="step" data-t="-22" data-s="Cold store and shipping" data-c="Up to 24 months" data-s-ar="التخزين المبرد والشحن" data-c-ar="حتى 24 شهرًا"><div class="n">Step 8</div><h3>Stored and shipped frozen.</h3><p>Kept in our cold store, then loaded into reefer containers at −18°C with a temperature log for the whole voyage.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <div class="wrap">
+    <p id="statement">Nothing added. No preservatives. Just the crop, frozen at the moment it was best.</p>
+  </div>
+</section>
+
+<!-- PACKAGING -->
+<section id="packaging">
+  <div class="pack-scene" id="packScene">
+    <div class="pack-sticky">
+      <div class="pack-intro">
+        <h2 class="d2">Your brand. Our fields.</h2>
+        <p class="lede" style="margin:16px auto 0">Private label from a 400 g retail bag to a 1-tonne tote.</p>
+      </div>
+      <div class="bag" id="bag" aria-hidden="true">
+        <div class="bag-body">
+          <div class="bag-label">
+            <div class="bl1">Your brand</div>
+            <div class="bl2">Garden<br>peas</div>
+            <div class="bl3">Frozen at −40°C hours after harvest</div>
+          </div>
+          <div class="bag-weight">1 kg</div>
+          <div class="bag-window"><canvas id="bagCanvas"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" style="padding-bottom:clamp(96px,14vh,160px)">
+    <div class="pack-opts">
+      <div><h3>Retail</h3><div class="size">400 g–1 kg</div><p>Printed bags, stand-up pouches and cartons, ready for supermarket shelves.</p></div>
+      <div><h3>Food service</h3><div class="size">2.5 kg</div><p>Clear or printed bags in master cartons for restaurants, hotels and caterers.</p></div>
+      <div><h3>Industrial</h3><div class="size">10–20 kg</div><p>Lined cartons for food manufacturers and repackers.</p></div>
+      <div><h3>Bulk</h3><div class="size">500 kg–1 t</div><p>Totes and octabins for processors who need volume.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section class="sec quality" id="quality">
+  <div class="wrap">
+    <h2 class="d2" style="max-width:15ch">Audited by the standards your buyers ask for.</h2>
+    <p class="lede" style="margin-top:20px">Certificates and audit reports are available on request for every shipment.</p>
+    <div class="certs">
+      <div class="cert"><div class="seal">BRC<br>GS</div><div><h3>BRCGS Food Safety</h3><p>Required by most UK and EU retailers.</p></div></div>
+      <div class="cert"><div class="seal">FSSC<br>22000</div><div><h3>FSSC 22000</h3><p>Food safety management, recognised by GFSI.</p></div></div>
+      <div class="cert"><div class="seal">GLOBAL<br>G.A.P.</div><div><h3>GLOBALG.A.P.</h3><p>Good farming practice on our contract farms.</p></div></div>
+      <div class="cert"><div class="seal">HACCP</div><div><h3>HACCP</h3><p>Hazard controls at every critical point on the line.</p></div></div>
+      <div class="cert"><div class="seal">Halal</div><div><h3>Halal</h3><p>For buyers in the Gulf, Asia and Muslim markets.</p></div></div>
+      <div class="cert"><div class="seal">Kosher</div><div><h3>Kosher</h3><p>Certified for kosher retail and food service.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REACH -->
+<section class="sec" id="reach">
+  <div class="wrap">
+    <h2 class="d2" style="max-width:14ch">Grown in Egypt. Eaten worldwide.</h2>
+    <figure class="wide-shot"><img src="images/port.jpg" alt="Reefer containers stacked at a Mediterranean port at dusk" loading="lazy"></figure>
+    <div class="stats">
+      <div class="stat"><div class="v" data-count="35">0</div><p>Countries we ship to</p></div>
+      <div class="stat"><div class="v" data-count="40" data-suffix="k" data-suffix-ar=" ألف">0</div><p>Tonnes frozen each year</p></div>
+      <div class="stat"><div class="v" data-count="12" data-suffix="k" data-suffix-ar=" ألف">0</div><p>Pallet spaces in our cold store</p></div>
+      <div class="stat"><div class="v" data-count="4" data-prefix="&lt;" data-suffix="h" data-prefix-ar="" data-suffix-ar=" ساعات">0</div><p>From harvest to freezing</p></div>
+    </div>
+    <div class="regions">
+      <div><h3>Europe</h3><p>Retail private label and food service across the EU and UK.</p></div>
+      <div><h3>Gulf and Middle East</h3><p>Halal-certified retail and catering supply.</p></div>
+      <div><h3>North America</h3><p>Okra, molokhia and ethnic vegetables for specialty retail.</p></div>
+      <div><h3>Asia and Africa</h3><p>Bulk vegetables and fruit for processors.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="d2" style="margin-bottom:36px">Questions? Answers.</h2>
+    <div class="faq">
+      <div class="faq-tools"><button type="button" data-faq="open">Expand all</button><button type="button" data-faq="close">Collapse all</button></div>
+      <details><summary>What does IQF mean?</summary><p>Individually quick frozen. Each piece is frozen separately in a stream of very cold air, so it stays loose in the bag. You can pour out exactly what you need and reseal the rest.</p></details>
+      <details><summary>What is your minimum order?</summary><p>One 40 ft reefer container, about 24–26 tonnes. You can mix several products in one container.</p></details>
+      <details><summary>Can you pack under our own brand?</summary><p>Yes. We print to your artwork in retail, food-service and industrial sizes. Send us your specs and we will quote packaging and lead time together.</p></details>
+      <details><summary>How long is the shelf life?</summary><p>24 months from production when stored at −18°C or colder.</p></details>
+      <details><summary>Can I get samples before ordering?</summary><p>Yes. We ship frozen samples by courier along with spec sheets and the latest lab results.</p></details>
+      <details><summary>Which ports do you ship from?</summary><p>Alexandria and Damietta, with Sokhna for Gulf and Asian routes. FOB, CFR and CIF terms are available.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec contact" id="contact">
+  <div class="wrap">
+    <h2 class="d2" style="max-width:13ch">Tell us what you need frozen.</h2>
+    <p class="lede" style="margin-top:20px">Our export team replies within one working day with prices, specs and availability.</p>
+    <form class="form" id="quoteForm">
+      <label>Name<input name="name" autocomplete="name" required></label>
+      <label>Company<input name="company" autocomplete="organization" required></label>
+      <label>Work email<input type="email" name="email" autocomplete="email" required></label>
+      <label>Destination country<input name="country" autocomplete="country-name"></label>
+      <label class="full">Products
+        <select name="product"><option>Green peas</option><option>Okra</option><option>Green beans</option><option>Molokhia</option><option>Strawberries</option><option>Mango</option><option>Mixed vegetables</option><option>Several products</option></select>
+      </label>
+      <label class="full">Volume, packing and anything else<textarea name="msg" rows="4"></textarea></label>
+      <button class="btn" type="submit">Send request</button>
+      <p class="form-note" id="formNote" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Tiba Foods. Cairo, Egypt.</span>
+    <nav aria-label="Footer"><a href="#products">Products</a><a href="#process">Process</a><a href="#quality">Quality</a><a href="#packaging">Private label</a><a href="#contact">Contact</a></nav>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+const setHdr=()=>{const rb=document.querySelector('.ribbon'),r=getComputedStyle(rb).position==='sticky'?rb.offsetHeight:0,n=document.querySelector('.nav').offsetHeight;document.documentElement.style.setProperty('--rib',r+'px');document.documentElement.style.setProperty('--hdr',(r+n)+'px');};setHdr();addEventListener('resize',setHdr);
+const isAR=()=>document.documentElement.lang==='ar';
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+/* ===================== Produce renderer ===================== */
+// Each kind: palette [light, mid, dark] + a shape. Drawn in local coords, size s.
+const KINDS = {
+  pea:    {c:['#C3E58A','#6FAE3E','#2F6420'], shape:'ball'},
+  corn:   {c:['#FFF0A8','#F5C845','#C98E17'], shape:'kernel'},
+  carrot: {c:['#FFC48A','#F2792A','#B9480F'], shape:'cube'},
+  bean:   {c:['#BDE08C','#5E9E36','#2C5E1E'], shape:'pod'},
+  okra:   {c:['#C7E39A','#6A9E3A','#355F1E'], shape:'okra'},
+  berry:  {c:['#FF8A8F','#D6303F','#7E1020'], shape:'berry'},
+  mango:  {c:['#FFE58A','#F7B52C','#D9780E'], shape:'cube'},
+  aril:   {c:['#FF9AA8','#D52845','#7A0C22'], shape:'aril'},
+  leaf:   {c:['#8FC66B','#3E7D2B','#1E4A17'], shape:'leaf'},
+  floret: {c:['#9CCB6A','#4C8A30','#24501A'], shape:'floret'},
+  cauli:  {c:['#FFFBEA','#EFE6C6','#C8BC90'], shape:'floret'},
+  arti:   {c:['#F2F0CF','#C9CF8E','#8E9A55'], shape:'disc'},
+  fava:   {c:['#D4EBA0','#8DBE58','#4E7E2C'], shape:'fava'},
+};
+function shapePath(shape, s){
+  const p = new Path2D();
+  switch(shape){
+    case 'ball': p.arc(0,0,s,0,Math.PI*2); break;
+    case 'kernel': roundRect(p,-s*.8,-s,s*1.6,s*1.9,s*.6); break;
+    case 'cube': roundRect(p,-s,-s,s*2,s*2,s*.35); break;
+    case 'pod': roundRect(p,-s*2.6,-s*.55,s*5.2,s*1.1,s*.55); break;
+    case 'okra': p.moveTo(-s*2.6,0); p.quadraticCurveTo(-s*1.4,-s*.95,s*1.6,-s*.7); p.lineTo(s*2.4,-s*.25); p.lineTo(s*2.4,s*.25); p.lineTo(s*1.6,s*.7); p.quadraticCurveTo(-s*1.4,s*.95,-s*2.6,0); break;
+    case 'berry': p.moveTo(0,s*1.25); p.bezierCurveTo(-s*1.3,s*.4,-s*1.25,-s*1.05,0,-s*.85); p.bezierCurveTo(s*1.25,-s*1.05,s*1.3,s*.4,0,s*1.25); break;
+    case 'aril': p.moveTo(0,-s*.95); p.bezierCurveTo(s*.85,-s*.4,s*.75,s*.75,0,s*.85); p.bezierCurveTo(-s*.75,s*.75,-s*.85,-s*.4,0,-s*.95); break;
+    case 'leaf': p.moveTo(-s*1.6,0); p.bezierCurveTo(-s*.6,-s*1.2,s*.9,-s*1.1,s*1.7,0); p.bezierCurveTo(s*.9,s*1.1,-s*.6,s*1.2,-s*1.6,0); break;
+    case 'floret': for(const [x,y,r] of [[0,-.45,.62],[-.6,-.1,.5],[.6,-.1,.5],[-.3,.35,.48],[.3,.35,.48]]) p.arc(x*s,y*s,r*s,0,Math.PI*2); p.moveTo(-s*.25,s*.4); p.rect(-s*.25,s*.4,s*.5,s*.9); break;
+    case 'disc': p.ellipse(0,0,s*1.25,s*.9,0,0,Math.PI*2); break;
+    case 'fava': p.ellipse(0,0,s*1.2,s*.85,0,0,Math.PI*2); break;
+  }
+  return p;
+}
+function roundRect(p,x,y,w,h,r){p.moveTo(x+r,y);p.arcTo(x+w,y,x+w,y+h,r);p.arcTo(x+w,y+h,x,y+h,r);p.arcTo(x,y+h,x,y,r);p.arcTo(x,y,x+w,y,r);p.closePath();}
+const pathCache = new Map();
+function getPath(shape,s){const k=shape+'|'+Math.round(s*4);if(!pathCache.has(k))pathCache.set(k,shapePath(shape,Math.round(s*4)/4));return pathCache.get(k);}
+
+function drawPiece(ctx, kind, x, y, s, rot, frost, seed){
+  const K = KINDS[kind]; const path = getPath(K.shape, s);
+  ctx.save(); ctx.translate(x,y); ctx.rotate(rot);
+  // body: lit from top-left (counter-rotate light so it stays fixed)
+  const lx = Math.cos(-rot-2.2)*s*.55, ly = Math.sin(-rot-2.2)*s*.55;
+  const g = ctx.createRadialGradient(lx,ly,s*.1,0,0,s*2.4);
+  g.addColorStop(0,K.c[0]); g.addColorStop(.42,K.c[1]); g.addColorStop(1,K.c[2]);
+  ctx.fillStyle = g; ctx.fill(path);
+  if(K.shape==='berry'){ ctx.fillStyle='rgba(255,236,170,.75)'; for(let i=0;i<7;i++){const a=seed*7+i*2.1,r=s*.55*((i%3)/3+.35);ctx.beginPath();ctx.ellipse(Math.cos(a)*r,Math.sin(a)*r*.9+s*.05,s*.07,s*.11,a,0,7);ctx.fill();} ctx.fillStyle='#3E7D2B'; ctx.beginPath(); ctx.ellipse(0,-s*.85,s*.55,s*.18,0,0,7); ctx.fill(); }
+  if(K.shape==='okra'){ ctx.strokeStyle='rgba(30,60,20,.35)'; ctx.lineWidth=Math.max(1,s*.08); ctx.beginPath(); ctx.moveTo(-s*2.2,0); ctx.lineTo(s*2.2,0); ctx.moveTo(-s*1.8,-s*.35); ctx.quadraticCurveTo(0,-s*.55,s*2,-s*.25); ctx.stroke(); }
+  if(K.shape==='leaf'){ ctx.strokeStyle='rgba(220,240,200,.45)'; ctx.lineWidth=Math.max(1,s*.07); ctx.beginPath(); ctx.moveTo(-s*1.5,0); ctx.lineTo(s*1.6,0); ctx.stroke(); }
+  // specular
+  ctx.fillStyle='rgba(255,255,255,.35)'; ctx.beginPath(); ctx.ellipse(lx*.9,ly*.9,s*.28,s*.16,-rot-2.2,0,7); ctx.fill();
+  // frost
+  if(frost>0.01){
+    const fg = ctx.createRadialGradient(0,0,s*.2,0,0,s*2.2);
+    fg.addColorStop(0,`rgba(235,247,252,${.15*frost})`); fg.addColorStop(.6,`rgba(240,250,255,${.55*frost})`); fg.addColorStop(1,`rgba(255,255,255,${.85*frost})`);
+    ctx.fillStyle=fg; ctx.fill(path);
+    ctx.fillStyle=`rgba(255,255,255,${.9*frost})`;
+    for(let i=0;i<5;i++){const a=seed*13+i*1.7, r=s*(.3+((seed*31+i*7)%10)/14); ctx.fillRect(Math.cos(a)*r,Math.sin(a)*r,Math.max(1,s*.09),Math.max(1,s*.09));}
+  }
+  ctx.restore();
+}
+function fitCanvas(cv){const r=cv.getBoundingClientRect();cv.width=Math.max(1,r.width*DPR);cv.height=Math.max(1,r.height*DPR);const c=cv.getContext('2d');c.setTransform(DPR,0,0,DPR,0,0);return {ctx:c,w:r.width,h:r.height};}
+const rand=(a,b)=>a+Math.random()*(b-a);
+
+/* ===================== HERO: scroll to freeze ===================== */
+const heroCv = document.getElementById('heroCanvas');
+let H = fitCanvas(heroCv);
+const heroKinds = ['pea','pea','pea','pea','corn','corn','carrot','carrot','bean','pea'];
+let pieces = [];
+function seedHero(){
+  const n = Math.round(Math.min(110, H.w*H.h/9000));
+  pieces = Array.from({length:n},(_,i)=>{
+    const z = rand(.45,1.25);
+    return {kind:heroKinds[i%heroKinds.length], x:rand(0,H.w), y:rand(0,H.h), z,
+      s:(H.w<700?7:10)*z, vx:rand(-.25,.25)*z, vy:rand(-.55,-.15)*z, r:rand(0,6.28), vr:rand(-.02,.02), seed:i+1, ph:rand(0,6.28)};
+  }).sort((a,b)=>a.z-b.z);
+}
+seedHero();
+const hero = {p: REDUCED ? 1 : 0};
+let t0 = performance.now();
+function heroFrame(now){
+  const dt = Math.min(48, now - t0); t0 = now;
+  const p = hero.p;
+  const speed = Math.pow(Math.max(0, 1 - p/.82), 2);  // fully stopped by 82% of scroll
+  const frost = gsap.utils.clamp(0,1,(p-.3)/.5);
+  const {ctx,w,h} = H; ctx.clearRect(0,0,w,h);
+  for(const q of pieces){
+    q.x += q.vx*speed*dt*.06 + Math.sin(now/1600+q.ph)*.12*speed;
+    q.y += q.vy*speed*dt*.06;
+    q.r += q.vr*speed*dt*.06;
+    if(q.y < -30) {q.y = h+30; q.x = rand(0,w);}
+    if(q.x < -30) q.x = w+30; if(q.x > w+30) q.x = -30;
+    ctx.globalAlpha = .55 + q.z*.4;
+    drawPiece(ctx,q.kind,q.x,q.y,q.s,q.r,frost,q.seed);
+  }
+  ctx.globalAlpha = 1;
+  if(heroVisible) requestAnimationFrame(heroFrame); else heroRunning=false;
+}
+let heroVisible = true, heroRunning = true;
+new IntersectionObserver(([e])=>{heroVisible=e.isIntersecting; if(heroVisible && !heroRunning){heroRunning=true;t0=performance.now();requestAnimationFrame(heroFrame);}}).observe(document.querySelector('.hero-stage'));
+requestAnimationFrame(heroFrame);
+
+gsap.registerPlugin(ScrollTrigger);
+const tempEl = document.getElementById('tempVal');
+const lines = gsap.utils.toArray('.hero-line');
+const fmtT = v => (v<0?'−':'')+Math.abs(Math.round(v));
+if(!REDUCED){
+  const tl = gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom bottom',scrub:.6,
+    onUpdate:self=>{ hero.p = self.progress; tempEl.textContent = fmtT(gsap.utils.interpolate(24,-40,gsap.utils.clamp(0,1,(self.progress-.12)/.7))); }}});
+  tl.to('.hero-ice',{opacity:1,duration:1,ease:'none'},.25)
+    .to(lines[0],{opacity:0,y:-40,duration:.18},.18)
+    .fromTo(lines[1],{opacity:0,y:40},{opacity:1,y:0,duration:.16},.3)
+    .to(lines[1],{opacity:0,y:-40,duration:.16},.55)
+    .fromTo(lines[2],{opacity:0,y:40},{opacity:1,y:0,duration:.16},.68)
+    .to('.scroll-hint',{opacity:0,duration:.1},.05)
+    .to({}, {duration:.1}, 1.15);
+} else {
+  gsap.set(lines,{opacity:0}); gsap.set(lines[2],{opacity:1}); gsap.set('.hero-ice',{opacity:1}); tempEl.textContent='−40';
+  document.querySelector('.hero').style.height='100vh';
+}
+
+/* ===================== Highlights rail ===================== */
+const rail = document.getElementById('rail');
+document.querySelectorAll('[data-rail]').forEach(b=>b.addEventListener('click',()=>{
+  rail.scrollBy({left:(+b.dataset.rail)*(isAR()?-1:1)*Math.min(420,rail.clientWidth*.8),behavior:REDUCED?'auto':'smooth'});
+}));
+// tile mini canvas: loose frozen peas, each separate
+document.querySelectorAll('canvas[data-mini]').forEach(cv=>{
+  const draw=()=>{const {ctx,w,h}=fitCanvas(cv);ctx.clearRect(0,0,w,h);let i=0;
+    for(let y=h*.36;y<h*.78;y+=30)for(let x=40+(Math.round(y)%60?15:0);x<w-30;x+=34){i++;drawPiece(ctx,'pea',x+Math.sin(i)*5,y+Math.cos(i*1.3)*5,11,i,0.75,i);} };
+  draw(); addEventListener('resize',draw);
+});
+if(!REDUCED){
+  gsap.fromTo('.clock-arc',{attr:{'stroke-dashoffset':691}},{attr:{'stroke-dashoffset':518},duration:1.6,ease:'power2.out',scrollTrigger:{trigger:'#rail',start:'top 75%'}});
+  gsap.to('.scan',{attr:{x:336},duration:2.2,repeat:-1,yoyo:true,ease:'sine.inOut'});
+}
+
+/* ===================== Product explorer ===================== */
+const PRODUCTS = {
+  veg:[
+    {id:'peas',name:'Green peas',kind:'pea',desc:'Sweet garden peas, picked young and frozen hours later.',specs:[['Sizes','Extra fine 7.5–8.75 mm, fine, medium'],['Season','December to April'],['Packs','400 g to 20 kg, bulk totes']]},
+    {id:'okra',name:'Okra',kind:'okra',desc:'Tender Egyptian okra, graded by length. A staple for Middle Eastern and South Asian kitchens.',specs:[['Grades','Zero, extra, small, medium, cut'],['Season','May to November'],['Packs','400 g to 10 kg']]},
+    {id:'beans',name:'Green beans',kind:'bean',desc:'Stringless beans, trimmed and blanched to keep their snap.',specs:[['Cuts','Whole, cut 2–4 cm, french cut'],['Season','November to May'],['Packs','400 g to 20 kg']]},
+    {id:'corn',name:'Sweet corn',kind:'corn',desc:'Super-sweet kernels cut from the cob and frozen loose.',specs:[['Cuts','Kernels, cobettes'],['Season','June to October'],['Packs','400 g to 20 kg']]},
+    {id:'carrot',name:'Carrots',kind:'carrot',desc:'Bright, sweet carrots for retail mixes and food manufacturing.',specs:[['Cuts','Diced 10 mm, sliced, baby'],['Season','December to May'],['Packs','1 kg to 20 kg']]},
+    {id:'broc',name:'Broccoli',kind:'floret',desc:'Firm florets with short stems, sized for even cooking.',specs:[['Cuts','Florets 20–40 mm, 40–60 mm'],['Season','November to March'],['Packs','400 g to 10 kg']]},
+    {id:'arti',name:'Artichoke',kind:'arti',desc:'Hand-trimmed bottoms and quarters from Egyptian artichokes.',specs:[['Cuts','Bottoms, quarters, hearts'],['Season','January to April'],['Packs','1 kg to 10 kg']]},
+  ],
+  fruit:[
+    {id:'straw',name:'Strawberries',kind:'berry',desc:'Festival and Fortuna strawberries, hulled and frozen whole or cut.',specs:[['Cuts','Whole, sliced, diced 10–15 mm'],['Season','December to April'],['Packs','400 g to 10 kg, bulk']]},
+    {id:'mango',name:'Mango',kind:'mango',desc:'Ripe Keitt and Kent mango from Ismailia, peeled and cut.',specs:[['Cuts','Chunks, dice 10 mm, halves'],['Season','August to October'],['Packs','400 g to 10 kg']]},
+    {id:'pome',name:'Pomegranate arils',kind:'aril',desc:'Deep red Wonderful arils, freed from the pith and frozen loose.',specs:[['Cuts','Arils'],['Season','September to November'],['Packs','250 g to 10 kg']]},
+  ],
+  leaf:[
+    {id:'molo',name:'Molokhia',kind:'leaf',desc:'Jute mallow leaves, whole or minced, ready for the classic Egyptian dish.',specs:[['Cuts','Whole leaves, minced'],['Season','April to October'],['Packs','400 g to 10 kg']]},
+    {id:'spin',name:'Spinach',kind:'leaf',desc:'Leaf and chopped spinach, washed and blanched.',specs:[['Cuts','Leaf, chopped, portions'],['Season','November to March'],['Packs','400 g to 10 kg']]},
+  ],
+  mix:[
+    {id:'mixveg',name:'Mixed vegetables',kind:'mix',mix:['pea','corn','carrot','bean'],desc:'Peas, carrots, corn and green beans in a ratio set to your spec.',specs:[['Mixes','3-way, 4-way, custom ratios'],['Use','Retail, catering, ready meals'],['Packs','400 g to 20 kg']]},
+    {id:'pc',name:'Peas and carrots',kind:'mix',mix:['pea','pea','carrot'],desc:'The classic pairing, diced carrot with fine peas.',specs:[['Ratio','50/50 or to spec'],['Use','Retail, catering'],['Packs','400 g to 20 kg']]},
+    {id:'fruitmix',name:'Fruit mix',kind:'mix',mix:['berry','mango','aril'],desc:'Strawberry, mango and pomegranate for smoothies and desserts.',specs:[['Mixes','Smoothie, tropical, custom'],['Use','Retail, juice bars, dairy'],['Packs','400 g to 10 kg']]},
+  ]
+};
+const PRODUCTS_AR = {
+  peas:{name:'بازلاء خضراء',desc:'بازلاء حلوة تُقطف صغيرة وتُجمَّد بعد ساعات من حصادها.',specs:[['الأحجام','إكسترا فاين 7.5–8.75 مم، فاين، متوسط'],['الموسم','ديسمبر إلى أبريل'],['العبوات','من 400 جم إلى 20 كجم، وعبوات سائبة']]},
+  okra:{name:'بامية',desc:'بامية مصرية طرية مصنّفة حسب الطول، صنف أساسي في مطابخ الشرق الأوسط وجنوب آسيا.',specs:[['الدرجات','زيرو، إكسترا، صغيرة، متوسطة، مقطّعة'],['الموسم','مايو إلى نوفمبر'],['العبوات','من 400 جم إلى 10 كجم']]},
+  beans:{name:'فاصوليا خضراء',desc:'فاصوليا بلا خيوط، مقلّمة ومسلوقة سلقًا خفيفًا لتحتفظ بقرمشتها.',specs:[['التقطيع','كاملة، مقطّعة 2–4 سم، شرائح طولية'],['الموسم','نوفمبر إلى مايو'],['العبوات','من 400 جم إلى 20 كجم']]},
+  corn:{name:'ذرة حلوة',desc:'حبوب ذرة شديدة الحلاوة تُفصل عن الكوز وتُجمَّد سائبة.',specs:[['التقطيع','حبوب، قطع كيزان'],['الموسم','يونيو إلى أكتوبر'],['العبوات','من 400 جم إلى 20 كجم']]},
+  carrot:{name:'جزر',desc:'جزر حلو زاهي اللون لخلطات التجزئة والتصنيع الغذائي.',specs:[['التقطيع','مكعبات 10 مم، شرائح، جزر صغير'],['الموسم','ديسمبر إلى مايو'],['العبوات','من 1 كجم إلى 20 كجم']]},
+  broc:{name:'بروكلي',desc:'زهرات متماسكة بسيقان قصيرة، بأحجام متساوية لطهي متجانس.',specs:[['التقطيع','زهرات 20–40 مم، 40–60 مم'],['الموسم','نوفمبر إلى مارس'],['العبوات','من 400 جم إلى 10 كجم']]},
+  arti:{name:'خرشوف',desc:'قواعد وأرباع خرشوف مصري مقلّمة يدويًا.',specs:[['التقطيع','قواعد، أرباع، قلوب'],['الموسم','يناير إلى أبريل'],['العبوات','من 1 كجم إلى 10 كجم']]},
+  straw:{name:'فراولة',desc:'فراولة فستيفال وفورتونا منزوعة الأقماع، تُجمَّد كاملة أو مقطّعة.',specs:[['التقطيع','كاملة، شرائح، مكعبات 10–15 مم'],['الموسم','ديسمبر إلى أبريل'],['العبوات','من 400 جم إلى 10 كجم، وعبوات سائبة']]},
+  mango:{name:'مانجو',desc:'مانجو كيت وكنت ناضجة من الإسماعيلية، مقشّرة ومقطّعة.',specs:[['التقطيع','قطع، مكعبات 10 مم، أنصاف'],['الموسم','أغسطس إلى أكتوبر'],['العبوات','من 400 جم إلى 10 كجم']]},
+  pome:{name:'حبات رمان',desc:'حبات رمان واندرفل حمراء داكنة، مفصولة عن القشرة ومجمّدة سائبة.',specs:[['التقطيع','حبات'],['الموسم','سبتمبر إلى نوفمبر'],['العبوات','من 250 جم إلى 10 كجم']]},
+  molo:{name:'ملوخية',desc:'أوراق ملوخية كاملة أو مفرومة، جاهزة لأشهر طبق مصري.',specs:[['التقطيع','أوراق كاملة، مفرومة'],['الموسم','أبريل إلى أكتوبر'],['العبوات','من 400 جم إلى 10 كجم']]},
+  spin:{name:'سبانخ',desc:'سبانخ أوراق ومفرومة، مغسولة ومسلوقة سلقًا خفيفًا.',specs:[['التقطيع','أوراق، مفرومة، قطع مُجزّأة'],['الموسم','نوفمبر إلى مارس'],['العبوات','من 400 جم إلى 10 كجم']]},
+  mixveg:{name:'خضروات مشكّلة',desc:'بازلاء وجزر وذرة وفاصوليا خضراء بنسب حسب مواصفاتك.',specs:[['الخلطات','ثلاثية، رباعية، نسب حسب الطلب'],['الاستخدام','التجزئة، الإعاشة، الوجبات الجاهزة'],['العبوات','من 400 جم إلى 20 كجم']]},
+  pc:{name:'بازلاء وجزر',desc:'الثنائي الكلاسيكي: جزر مكعبات مع بازلاء فاين.',specs:[['النسبة','50/50 أو حسب المواصفات'],['الاستخدام','التجزئة، الإعاشة'],['العبوات','من 400 جم إلى 20 كجم']]},
+  fruitmix:{name:'خليط فواكه',desc:'فراولة ومانجو ورمان للعصائر والحلويات.',specs:[['الخلطات','سموذي، استوائي، حسب الطلب'],['الاستخدام','التجزئة، محلات العصير، منتجات الألبان'],['العبوات','من 400 جم إلى 10 كجم']]},
+};
+const swatch = k => KINDS[k]?.c[1] || '#4E8F3A';
+const pCv = document.getElementById('productCanvas');
+let P = fitCanvas(pCv), pile = [], pileT = 0, current;
+function buildPile(prod){
+  const kinds = prod.mix || [prod.kind];
+  const big = ['okra','bean','leaf'].includes(kinds[0]) ? 1.2 : 1;
+  const n = prod.mix ? 46 : 38;
+  pile = Array.from({length:n},(_,i)=>{
+    const a = i*2.399, r = Math.sqrt(i/n)*Math.min(P.w,P.h)*.36;
+    return {kind:kinds[i%kinds.length], x:P.w/2+Math.cos(a)*r, y:P.h/2+Math.sin(a)*r*.9, s:(P.w/30)*big*rand(.85,1.1), r:rand(0,6.28), seed:i+3, ph:rand(0,6.28)};
+  }).sort((a,b)=>a.y-b.y);
+  pileT = 0;
+}
+function drawPile(now){
+  const {ctx,w,h} = P; ctx.clearRect(0,0,w,h);
+  pileT = Math.min(1, pileT + .035);
+  const e = 1 - Math.pow(1-pileT,3);
+  for(const q of pile){
+    const bob = REDUCED ? 0 : Math.sin(now/1400+q.ph)*2.5;
+    const y = q.y - (1-e)*h*.5 + bob;
+    ctx.globalAlpha = e;
+    drawPiece(ctx,q.kind,q.x,y,q.s,q.r+(1-e)*2,.55,q.seed);
+  }
+  ctx.globalAlpha=1;
+  if(pileVisible) requestAnimationFrame(drawPile); else pileRunning=false;
+}
+let pileVisible=false, pileRunning=false;
+new IntersectionObserver(([e])=>{pileVisible=e.isIntersecting; if(pileVisible&&!pileRunning){pileRunning=true;requestAnimationFrame(drawPile);}}).observe(pCv);
+const plist = document.getElementById('plist');
+let curCat='veg';
+const tx = pr => (isAR() && PRODUCTS_AR[pr.id]) ? PRODUCTS_AR[pr.id] : pr;
+function showCat(cat){
+  curCat=cat; plist.innerHTML='';
+  PRODUCTS[cat].forEach((pr,i)=>{
+    const b=document.createElement('button'); b.type='button';
+    b.innerHTML=`<i style="background:${swatch(pr.mix?pr.mix[1]:pr.kind)}"></i>${tx(pr).name}`;
+    b.setAttribute('aria-pressed', i===0);
+    b.onclick=()=>{plist.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));showProduct(pr);};
+    plist.appendChild(b);
+  });
+  showProduct(PRODUCTS[cat][0]);
+}
+function showProduct(pr){
+  current = pr; const L = tx(pr);
+  document.getElementById('pname').textContent = L.name;
+  document.getElementById('pdesc').textContent = L.desc;
+  document.getElementById('pspecs').innerHTML = L.specs.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('');
+  buildPile(pr);
+}
+document.querySelectorAll('#tabs button').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-selected',x===t));
+  showCat(t.dataset.cat);
+}));
+showCat('veg');
+
+/* ===================== Process: temperature line ===================== */
+const procTemp = document.getElementById('procTemp'), procStage=document.getElementById('procStage'), procClock=document.getElementById('procClock'), fill=document.getElementById('thermoFill');
+const tState = {v:28};
+const tempToPct = v => gsap.utils.clamp(2,100,((v+40)/140)*100);
+let activeStep;
+function setStep(li){
+  activeStep = li;
+  document.querySelectorAll('.step').forEach(s=>s.classList.toggle('on',s===li));
+  const v = +li.dataset.t;
+  procStage.textContent = isAR()?li.dataset.sAr:li.dataset.s; procClock.textContent = isAR()?li.dataset.cAr:li.dataset.c;
+  gsap.to(tState,{v,duration:REDUCED?0:.9,ease:'power2.out',onUpdate:()=>{procTemp.textContent=fmtT(tState.v);}});
+  gsap.to(fill,{height:tempToPct(v)+'%',background:v>40?'linear-gradient(0deg,#E9A93B,#F07A3A)':v>0?'linear-gradient(0deg,#8EC5D6,#E9A93B)':'linear-gradient(0deg,#CFE9F1,#8EC5D6)',duration:REDUCED?0:.9,ease:'power2.out'});
+}
+document.querySelectorAll('.step').forEach(li=>{
+  ScrollTrigger.create({trigger:li,start:'top 60%',end:'bottom 60%',onToggle:s=>{if(s.isActive)setStep(li);}});
+});
+setStep(document.querySelector('.step'));
+
+/* ===================== Statement: word reveal ===================== */
+const st = document.getElementById('statement'); const ST_EN = st.textContent; let stTween;
+function splitStatement(text){
+  if(stTween){ if(stTween.scrollTrigger) stTween.scrollTrigger.kill(); stTween.kill(); }
+  st.innerHTML = text.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');
+  if(!REDUCED) stTween = gsap.to('#statement .w',{opacity:1,stagger:.1,ease:'none',scrollTrigger:{trigger:'.statement',start:'top 75%',end:'bottom 55%',scrub:true}});
+}
+splitStatement(ST_EN);
+
+/* ===================== Packaging: bag scales up ===================== */
+const bagCv = document.getElementById('bagCanvas');
+const drawBag=()=>{const {ctx,w,h}=fitCanvas(bagCv);ctx.clearRect(0,0,w,h);let i=0;
+  for(let y=h*.25;y<h+10;y+=w/12)for(let x=0;x<w+10;x+=w/11){i++;drawPiece(ctx,'pea',x+Math.sin(i*1.7)*4,y+Math.cos(i)*3,w/22,i,.6,i);}};
+drawBag(); addEventListener('resize',drawBag);
+if(!REDUCED){
+  gsap.timeline({scrollTrigger:{trigger:'#packScene',start:'top top',end:'bottom bottom',scrub:.5}})
+    .fromTo('#bag',{scale:.5,y:'16vh',rotate:-6},{scale:1,y:'8vh',rotate:0,ease:'none'})
+    .to('.pack-intro',{opacity:.0,y:-30,ease:'none',duration:.4},.55);
+} else { gsap.set('#bag',{scale:1,y:'10vh'}); }
+
+/* ===================== Counters ===================== */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const end=+el.dataset.count, d=el.dataset;
+  const o={v:REDUCED?end:0};
+  const out=()=>{const ar=isAR(); const pre=ar&&d.prefixAr!==undefined?d.prefixAr:(d.prefix||''); const suf=ar&&d.suffixAr!==undefined?d.suffixAr:(d.suffix||''); el.textContent=pre+Math.round(o.v)+suf;};
+  el._out=out; out();
+  if(!REDUCED) ScrollTrigger.create({trigger:el,start:'top 85%',once:true,onEnter:()=>gsap.to(o,{v:end,duration:1.6,ease:'power2.out',onUpdate:out})});
+});
+
+/* ===================== FAQ + form ===================== */
+document.querySelectorAll('[data-faq]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.faq details').forEach(d=>d.open = b.dataset.faq==='open');
+}));
+document.getElementById('quoteForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('formNote').textContent=isAR()?'هذه نسخة تجريبية، لذلك لم يُرسَل شيء. في الموقع الفعلي يصل هذا الطلب إلى فريق التصدير.':'This is a preview, so nothing was sent. On the live site this request goes to the export team.';
+});
+
+/* ===================== Photos ===================== */
+if(!REDUCED){
+  gsap.timeline({scrollTrigger:{trigger:'#farms',start:'top top',end:'bottom bottom',scrub:.5}})
+    .fromTo('.reveal-img',{clipPath:()=>innerWidth<700?'inset(10% 6% round 24px)':'inset(12% 16% round 32px)'},{clipPath:'inset(0% 0% round 0px)',ease:'none',duration:.6},0)
+    .fromTo('.reveal-img img',{scale:1.18},{scale:1,ease:'none',duration:.6},0)
+    .to('.reveal-shade',{opacity:1,ease:'none',duration:.3},.35)
+    .fromTo('.reveal-copy',{opacity:0,y:40},{opacity:1,y:0,duration:.25},.5)
+    .to({}, {duration:.25});
+  gsap.utils.toArray('.macro-grid figure').forEach((f,i)=>{
+    gsap.fromTo(f,{y:[60,110,80][i]},{y:[-20,-50,-30][i],ease:'none',scrollTrigger:{trigger:'.macro-grid',start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  gsap.utils.toArray('.wide-shot').forEach(fig=>{
+    gsap.fromTo(fig,{scale:.9},{scale:1,ease:'none',scrollTrigger:{trigger:fig,start:'top bottom',end:'top 35%',scrub:true}});
+    gsap.fromTo(fig.querySelector('img'),{scale:1.2},{scale:1,ease:'none',scrollTrigger:{trigger:fig,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+} else {
+  gsap.set('.reveal-img',{clipPath:'inset(0% 0% round 0px)'}); gsap.set('.reveal-img img, .wide-shot img',{scale:1});
+  gsap.set('.reveal-shade, .reveal-copy',{opacity:1}); document.getElementById('farms').style.height='100vh';
+}
+
+/* ===================== Arabic (RTL) ===================== */
+const AR_T = s => s.replace(/\{([^}]+)\}/g,'<span dir="ltr">$1°</span>م');
+const I18N = [
+  ['.ribbon','نسخة تجريبية لموقع طيبة فودز.','text'],
+  ['.rib-long',' المنتجات والأرقام والشهادات مؤقتة، والصور مولّدة بالذكاء الاصطناعي.'],
+  ['.rib-short',' المحتوى والصور مؤقتة.'],
+  ['.brand','طيبة ','text'],
+  ['.brand span','فودز'],
+  ['.nav ul a',['لماذا طيبة','المنتجات','مراحل الإنتاج','العلامة الخاصة','الجودة','الأسئلة الشائعة']],
+  ['.nav .btn','اطلب عرض سعر'],
+  ['.hero-line .d1',['قُطفت تحت شمس مصر.','تُجمَّد خلال ساعات.','كل حبة وحدها.']],
+  ['.hero-line p',['بازلاء وفاصوليا وبامية وفراولة ومانجو، تُزرع على ضفاف النيل وتُحصد في أفضل حالاتها.','من الحقل مباشرة إلى هواء بدرجة {−40}، قبل أن يفقد المحصول طعمه.','تجميد سريع فردي (IQF). لا شيء يلتصق، فتأخذ الكمية التي تحتاجها بالضبط وتُبقي الباقي مجمّدًا.']],
+  ['.temp small','حرارة المنتج'],
+  ['.scroll-hint','مرّر لتشاهد التجميد <i></i>'],
+  ['#highlights h2','لماذا يختار المستوردون طيبة.'],
+  ['.tile h3',['من الحقل إلى الفريزر في أقل من أربع ساعات.','كل حبة تُجمَّد وحدها.','أنفاق تجميد حلزونية بدرجة {−40}.','فحص بكاشف المعادن والأشعة السينية.','علامتك التجارية على محصولنا.','نشحن مجمّدًا إلى مشترين في أربع قارات.']],
+  ['.tile p',['مزارعنا قريبة من المصنع، فيُبرَّد المحصول ويُنظَّف ويُجمَّد في صباح يوم قطفه نفسه.','يحرّك الهواء البارد كل حبة بازلاء وفاصوليا وفراولة أثناء تجميدها، فلا تلتصق بغيرها.','التجميد السريع يكوّن بلورات ثلج صغيرة، فتبقى جدران الخلايا سليمة ويحتفظ المنتج بقوامه ولونه بعد الذوبان.','كل خط إنتاج يمر بكشف الأجسام الغريبة بعد التجميد ثم مرة أخرى بعد التعبئة.','تعبئة بعلامتك الخاصة بأحجام التجزئة والمطاعم والمصانع، مطبوعة بتصميمك وبلغتك.','حاويات كاملة أو مختلطة، مع سجل حرارة من مخازننا المبردة حتى ميناء الوصول.']],
+  ['.tile svg text',[undefined,'حاوية مبردة 40 قدم بدرجة 18 تحت الصفر']],
+  ['.reveal-copy h2','كل شيء يبدأ في الدلتا.'],
+  ['.reveal-copy p','مزارعنا المتعاقدة تزرع البازلاء والفاصوليا والبامية والفراولة في طمي النيل، على مسافة قصيرة من المصنع.'],
+  ['#frozen h2','التجميد لا يغيّر شيئًا.'],
+  ['#frozen .lede','اللون والشكل والقوام تبقى كما خرجت من الحقل.'],
+  ['#frozen figcaption',['بازلاء خضراء، إكسترا فاين','فراولة كاملة','بامية زيرو']],
+  ['#products h2','نظرة أقرب.'],
+  ['#products .lede','اختر محصولًا لترى طرق التقطيع والأحجام. التشكيلة الكاملة في الكتالوج.'],
+  ['#tabs button',['خضروات','فواكه','ورقيات','خلطات']],
+  ['.stage-temp','يُخزَّن عند {−18}'],
+  ['#process h2','كيف تصل حبة البازلاء من حقلنا إلى الفريزر عندك.'],
+  ['#process .lede','ثماني مراحل وخط حرارة واحد. مرّر لتشاهده ينخفض.'],
+  ['.step .n',['المرحلة 1','المرحلة 2','المرحلة 3','المرحلة 4','المرحلة 5','المرحلة 6','المرحلة 7','المرحلة 8']],
+  ['.step h3',['يُحصد في ذروة النضج.','يُبرَّد فور وصوله.','يُفرز ويُدرَّج ويُغسل.','يُسلق سلقًا خفيفًا ليحتفظ بلونه.','يُبرَّد مباشرة بعد السلق.','يُجمَّد حبةً حبة عند {−40}.','يُفحص ويُعبّأ.','يُخزَّن ويُشحن مجمّدًا.']],
+  ['.step p',['مزارع متعاقدة تزرع وفق برامجنا للبذور والرش، ويحدد المهندسون الزراعيون يوم الحصاد حسب الحلاوة والطراوة، لا حسب التقويم.','نأخذ عينة من كل شاحنة ونسجّل مزرعتها وقطعة الأرض، لنتتبّع كل عبوة حتى الحقل.','تزيل أجهزة الفرز الضوئي الحصى والسيقان والحبات مختلفة اللون، ثم يُدرَّج المحصول حسب الحجم ويُغسل بماء مبرد.','غمر قصير في ماء ساخن يوقف الإنزيمات التي تُفقد اللون والطعم. الفواكه لا تمر بهذه المرحلة.','قنوات ماء مثلج تخفض الحرارة خلال ثوانٍ فيتوقف الطهي.','طبقة من الهواء البارد ترفع كل حبة أثناء تجميدها، وبعد دقائق تتجمد حتى قلبها وتبقى سائبة.','كشف معادن وأشعة سينية وتحاليل معملية لكل دفعة، ثم التعبئة في أكياس تجزئة أو عبوات مطاعم أو كراتين.','يُحفظ في مخازننا المبردة، ثم يُحمَّل في حاويات مبردة عند {−18} مع سجل حرارة طوال الرحلة.']],
+  ['.pack-intro h2','علامتك التجارية. حقولنا.'],
+  ['.pack-intro .lede','تعبئة بعلامتك الخاصة، من كيس تجزئة 400 جم إلى عبوة سائبة وزنها طن.'],
+  ['.bl1','علامتك التجارية'],
+  ['.bl2','بازلاء<br>خضراء'],
+  ['.bl3','مجمّدة عند {−40} بعد ساعات من الحصاد'],
+  ['.bag-weight','1 كجم'],
+  ['.pack-opts h3',['التجزئة','المطاعم والفنادق','الصناعي','السائب']],
+  ['.pack-opts .size',['400 جم–1 كجم','2.5 كجم','10–20 كجم','500 كجم–1 طن']],
+  ['.pack-opts p',['أكياس مطبوعة وعبوات قائمة وكراتين جاهزة لرفوف السوبرماركت.','أكياس شفافة أو مطبوعة في كراتين رئيسية للمطاعم والفنادق وشركات الإعاشة.','كراتين مبطّنة لمصانع الأغذية وشركات إعادة التعبئة.','عبوات كبيرة وأوكتابن للمصانع التي تحتاج كميات كبيرة.']],
+  ['#quality h2','معتمدون وفق المعايير التي يطلبها عملاؤك.'],
+  ['#quality .lede','الشهادات وتقارير التدقيق متاحة عند الطلب مع كل شحنة.'],
+  ['.cert h3',['BRCGS لسلامة الغذاء',undefined,undefined,undefined,'حلال','كوشر']],
+  ['.cert p',['مطلوبة لدى معظم سلاسل التجزئة في بريطانيا وأوروبا.','نظام لإدارة سلامة الغذاء معترف به من GFSI.','ممارسات زراعية جيدة في مزارعنا المتعاقدة.','ضبط المخاطر عند كل نقطة حرجة في خط الإنتاج.','لعملائنا في الخليج وآسيا والأسواق الإسلامية.','معتمدة لتجزئة ومطاعم الكوشر.']],
+  ['#reach h2','زُرع في مصر. يؤكل حول العالم.'],
+  ['.stat p',['دولة نصدّر إليها','طن نجمّده سنويًا','موقع طبلية في مخازننا المبردة','أقصى مدة من الحصاد إلى التجميد']],
+  ['.regions h3',['أوروبا','الخليج والشرق الأوسط','أمريكا الشمالية','آسيا وأفريقيا']],
+  ['.regions p',['علامات خاصة للتجزئة وتوريد للمطاعم في الاتحاد الأوروبي وبريطانيا.','توريد للتجزئة والإعاشة بشهادة حلال.','بامية وملوخية وخضروات شرقية لمتاجر الأطعمة المتخصصة.','خضروات وفواكه سائبة للمصانع.']],
+  ['#faq h2','أسئلة؟ إجابات.'],
+  ['.faq-tools button',['فتح الكل','إغلاق الكل']],
+  ['.faq summary',['ما معنى IQF؟','ما الحد الأدنى للطلب؟','هل يمكنكم التعبئة بعلامتنا التجارية؟','ما مدة الصلاحية؟','هل يمكنني الحصول على عينات قبل الطلب؟','من أي موانئ تشحنون؟']],
+  ['.faq details p',['التجميد السريع الفردي. تُجمَّد كل حبة منفصلة في تيار من الهواء شديد البرودة فتبقى سائبة داخل الكيس، فتأخذ ما تحتاجه بالضبط وتغلق الباقي.','حاوية مبردة واحدة 40 قدم، أي حوالي 24–26 طنًا. ويمكن خلط أكثر من منتج في الحاوية نفسها.','نعم. نطبع وفق تصميمك بأحجام التجزئة والمطاعم والمصانع. أرسل لنا مواصفاتك ونرسل لك عرض سعر التعبئة ومدة التنفيذ معًا.','24 شهرًا من تاريخ الإنتاج عند التخزين على {−18} أو أقل.','نعم. نرسل عينات مجمّدة بالبريد السريع مع كراسات المواصفات وأحدث نتائج التحاليل.','الإسكندرية ودمياط، والسخنة لخطوط الخليج وآسيا. نتعامل بشروط FOB وCFR وCIF.']],
+  ['#contact h2','أخبرنا ماذا تحتاج مجمّدًا.'],
+  ['#contact .lede','يرد فريق التصدير خلال يوم عمل واحد بالأسعار والمواصفات والكميات المتاحة.'],
+  ['.form label',['الاسم','الشركة','البريد الإلكتروني للعمل','دولة الوصول','المنتجات','الكمية والتعبئة وأي تفاصيل أخرى'],'text'],
+  ['.form option',['بازلاء خضراء','بامية','فاصوليا خضراء','ملوخية','فراولة','مانجو','خضروات مشكّلة','أكثر من منتج']],
+  ['.form .btn','إرسال الطلب'],
+  ['footer .wrap > span','© 2026 طيبة فودز. القاهرة، مصر.'],
+  ['footer nav a',['المنتجات','مراحل الإنتاج','الجودة','العلامة الخاصة','تواصل معنا']],
+];
+const AR_STATEMENT = 'لا إضافات. لا مواد حافظة. فقط المحصول، مجمّدًا في أفضل لحظاته.';
+const TITLE_EN = document.title, DESC = document.querySelector('meta[name=description]'), DESC_EN = DESC.content;
+const langBtn = document.getElementById('langBtn');
+function applyLang(lang){
+  const ar = lang==='ar', root = document.documentElement;
+  root.lang = ar?'ar':'en'; root.dir = ar?'rtl':'ltr';
+  I18N.forEach(([sel,val,mode])=>{
+    const vals = Array.isArray(val)?val:[val];
+    document.querySelectorAll(sel).forEach((n,i)=>{
+      if(vals[i]===undefined) return;
+      if(mode==='text'){
+        const tn=[...n.childNodes].find(c=>c.nodeType===3&&c.nodeValue.trim()); if(!tn) return;
+        if(tn._en===undefined) tn._en=tn.nodeValue;
+        tn.nodeValue = ar ? vals[i]+' ' : tn._en;
+      } else {
+        if(n._en===undefined) n._en=n.innerHTML;
+        n.innerHTML = ar ? AR_T(vals[i]) : n._en;
+      }
+    });
+  });
+  document.title = ar ? 'طيبة فودز | خضروات وفواكه مجمّدة IQF من مصر' : TITLE_EN;
+  DESC.content = ar ? 'طيبة فودز تزرع وتجمّد وتصدّر الخضروات والفواكه والورقيات المجمّدة IQF من مصر، كل حبة تُجمَّد وحدها عند 40 تحت الصفر بعد ساعات من الحصاد.' : DESC_EN;
+  langBtn.textContent = ar ? 'English' : 'عربي';
+  langBtn.lang = ar ? 'en' : 'ar';
+  langBtn.setAttribute('aria-label', ar ? 'Switch to English' : 'التبديل إلى العربية');
+  splitStatement(ar ? AR_STATEMENT : ST_EN);
+  showCat(curCat);
+  if(activeStep) setStep(activeStep);
+  document.querySelectorAll('[data-count]').forEach(el=>el._out&&el._out());
+  document.getElementById('formNote').textContent='';
+  setHdr();
+  try{ localStorage.setItem('tiba-lang', lang); }catch(e){}
+  const u = new URL(location.href); u.searchParams.set('lang', lang);
+  try{ history.replaceState(null,'',u); }catch(e){}
+  requestAnimationFrame(()=>ScrollTrigger.refresh());
+}
+langBtn.addEventListener('click',()=>applyLang(isAR()?'en':'ar'));
+let initLang = new URLSearchParams(location.search).get('lang');
+if(!initLang){ try{ initLang = localStorage.getItem('tiba-lang'); }catch(e){} }
+if(initLang==='ar') applyLang('ar');
+
+/* ===================== Resize ===================== */
+let rz; addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{H=fitCanvas(heroCv);seedHero();P=fitCanvas(pCv);if(current)buildPile(current);ScrollTrigger.refresh();},150);});
+})();
+</script>
+</body>
+</html>
